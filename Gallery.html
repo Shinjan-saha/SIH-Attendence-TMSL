@@ -56,7 +56,6 @@
       border: none;
       border-radius: 5px;
     }
-
   </style>
 </head>
 <body>
@@ -81,13 +80,16 @@
 <!-- Socket.IO script -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
 
+<!-- Your Socket.IO logic -->
 <script>
 document.addEventListener('DOMContentLoaded', function () {
   const socket = io();
 
   const attendees = [
     // Your existing data
+    // ... (add other attendees)
     { name: 'Subhangi Roy', contact: '9830290435 ' },
+
     { name: 'Anushka Chowdhury', contact: '6291517937' },
     { name: 'Md Obaid ', contact: '8450067389' },
     { name: 'Swapnil Kumar Chaudhuri ', contact: '7044903833' },
