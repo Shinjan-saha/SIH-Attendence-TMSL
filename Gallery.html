@@ -4,6 +4,7 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <style>
+    /* Your existing styles */
     body {
       font-family: Arial, sans-serif;
       background: url('./assets/css/images/newelec.jpg') center/cover no-repeat fixed;
@@ -56,12 +57,9 @@
       border-radius: 5px;
     }
 
-    
   </style>
 </head>
 <body>
-
-  
 
 <h2>Attendance List</h2>
 
@@ -80,10 +78,15 @@
   </tbody>
 </table>
 
+<!-- Socket.IO script -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.0/socket.io.js"></script>
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
-  // Sample data (replace with your actual data)
+  const socket = io();
+
   const attendees = [
+    // Your existing data
     { name: 'Subhangi Roy', contact: '9830290435 ' },
     { name: 'Anushka Chowdhury', contact: '6291517937' },
     { name: 'Md Obaid ', contact: '8450067389' },
@@ -148,16 +151,10 @@ document.addEventListener('DOMContentLoaded', function () {
     { name: 'Ashutosh Mandal', contact: '9433621254' },
     { name: 'Nishanta Kumar das', contact: '9006475674' },
     { name: 'Anish Bhowmick', contact: '8583045918' },
-    
-
-
-    // Add more attendees as needed
   ];
 
-  // Load attendance data from localStorage
   const storedAttendance = JSON.parse(localStorage.getItem('attendance')) || {};
 
-  // Create table rows
   const tableBody = document.getElementById('attendanceTableBody');
   attendees.forEach((attendee, index) => {
     const row = document.createElement('tr');
@@ -172,13 +169,11 @@ document.addEventListener('DOMContentLoaded', function () {
     checkbox.type = 'checkbox';
     checkbox.className = 'checkbox-red';
 
-    // Update checkbox color based on stored state
     if (storedAttendance[index]) {
       checkbox.checked = true;
       checkbox.classList.add('checkbox-green');
     }
 
-    // Change checkbox color on click
     checkbox.addEventListener('click', function () {
       if (checkbox.checked) {
         checkbox.classList.add('checkbox-green');
@@ -186,9 +181,10 @@ document.addEventListener('DOMContentLoaded', function () {
         checkbox.classList.remove('checkbox-green');
       }
 
-      // Save attendance state to localStorage
       storedAttendance[index] = checkbox.checked;
       localStorage.setItem('attendance', JSON.stringify(storedAttendance));
+
+      socket.emit('updateAttendance', storedAttendance);
     });
 
     checkboxCell.appendChild(checkbox);
@@ -199,21 +195,41 @@ document.addEventListener('DOMContentLoaded', function () {
 
     tableBody.appendChild(row);
   });
-});
 
-function searchAttendees() {
-  const input = document.getElementById('searchBar').value.toLowerCase();
-  const rows = document.getElementById('attendanceTableBody').getElementsByTagName('tr');
+  function searchAttendees() {
+    const input = document.getElementById('searchBar').value.toLowerCase();
+    const rows = document.getElementById('attendanceTableBody').getElementsByTagName('tr');
 
-  for (let i = 0; i < rows.length; i++) {
-    const name = rows[i].getElementsByTagName('td')[0].textContent.toLowerCase();
-    if (name.includes(input)) {
-      rows[i].style.display = '';
-    } else {
-      rows[i].style.display = 'none';
+    for (let i = 0; i < rows.length; i++) {
+      const name = rows[i].getElementsByTagName('td')[0].textContent.toLowerCase();
+      if (name.includes(input)) {
+        rows[i].style.display = '';
+      } else {
+        rows[i].style.display = 'none';
+      }
     }
   }
-}
+
+  socket.on('updatedAttendance', (data) => {
+    updateUI(data);
+  });
+
+  socket.on('initialAttendance', (data) => {
+    updateUI(data);
+  });
+
+  function updateUI(attendanceData) {
+    const checkboxes = document.querySelectorAll('.checkbox-red');
+    checkboxes.forEach((checkbox, index) => {
+      checkbox.checked = attendanceData[index];
+      if (attendanceData[index]) {
+        checkbox.classList.add('checkbox-green');
+      } else {
+        checkbox.classList.remove('checkbox-green');
+      }
+    });
+  }
+});
 </script>
 
 </body>
