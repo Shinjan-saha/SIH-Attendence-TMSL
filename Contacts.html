@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contacts</title>
+    <link rel="stylesheet" href="./assets/css/events.css">
+    <link rel="icon" href="./assets/css/images/Emerge colored.png">
+    <style>
+        body {
+            background-image: url('./assets/css/images/newelec.jpg');
+            background-size: cover;
+            background-repeat: no-repeat;
+        }
+
+        #cheerio-button {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: white;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+            z-index: 9999;
+            cursor: pointer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        #cheerio-icon {
+            width: 24px;
+            height: 24px;
+            background-image: url('./assets/css/images/home.png');
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        #list-1, .list-2 {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            padding: 20px;
+        }
+
+        .contact-card {
+            width: 150px;
+            text-align: center;
+            margin: 10px;
+        }
+
+        .contact-image {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin: 0 auto;
+        }
+
+        .contact-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .contact-name {
+            font-size: 16px;
+            color: rgba(20, 4, 140, 0.8);
+            margin-top: 10px;
+        }
+
+        .contact-link {
+            font-size: 14px;
+            color: rgba(20, 4, 140, 0.8);
+            text-decoration: none;
+            display: block;
+            margin-top: 5px;
+        }
+
+        .contact-link:hover {
+            color: rgb(3, 207, 207);
+        }
+
+        
+    </style>
+</head>
+<body>
+    <!-- Cheerio Button-->
+    <a href="./index.html" id="cheerio-button" onclick="toggleTheme()">
+        <div id="cheerio-icon"></div>
+    </a>
+
+    <div id="list-1">
+        <!-- Contact 1 ... -->
+        <div class="contact-card">
+            <div class="contact-image">
+                <img src="./assets/css/images/suman.jpeg" alt="Contact Image 1">
+            </div>
+            <div class="contact-name"><b>Suman Rakshit(Accommodation Coordinator)</b> </div>
+            <a href="tel:+91 7098787053" class="contact-link">7098787053</a>
+
+        </div>
+
+        <!-- Contact 2 -->
+        <div class="contact-card">
+            <div class="contact-image">
+                <img src="./assets/css/images/subhangi.jpeg" alt="Contact Image 2">
+            </div>
+            <div class="contact-name"><b>Subhangi Roy(Accommodation Coordinator)<b></div>
+                <a href="tel:+91 9830290435" class="contact-link">9830290435</a>
+        </div>
+
+        <div class="contact-card">
+            <div class="contact-image">
+                <img src="./assets/css/images/abhiraj.jpeg" alt="Contact Image 2">
+            </div>
+            <div class="contact-name"><b>Abhiraj Kolay(Food Coordinator)<b></div>
+                <a href="tel:+91 8335959209 " class="contact-link">8335959209 </a>
+        </div>
+
+
+    </div>
+
+    <div id="list-1">
+        <!-- Contact 1 ... -->
+        <div class="contact-card">
+            <div class="contact-image">
+                <img src="./assets/css/images/nabho.jpeg" alt="Contact Image 1">
+            </div>
+            <div class="contact-name"><b>Nabhoneel Singha (Food Coordinator)</b> </div>
+            <a href="tel:+91 8617740315" class="contact-link">8617740315</a>
+
+        </div>
+
+        <!-- Contact 2 -->
+        <div class="contact-card">
+            <div class="contact-image">
+                <img src="./assets/css/images/subhadip.jpeg" alt="Contact Image 2">
+            </div>
+            <div class="contact-name"><b>Subhadip Mondal (IT Coordinator)<b></div>
+                <a href="tel:+91 8617704773 " class="contact-link">8617704773 </a>
+        </div>
+
+        <div class="contact-card">
+            <div class="contact-image">
+                <img src="./assets/css/images/saikat.jpeg" alt="Contact Image 2">
+            </div>
+            <div class="contact-name"><b>Saikat Sankar Bagchi(Medical Emergency)<b></div>
+                <a href="tel:+91 8768335283 " class="contact-link">8768335283 </a>
+        </div>
+
+
+    </div>
+</body>
+</html>

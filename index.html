@@ -1,59 +1,49 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html>
-<head>
-  <!--
-    If you are serving your web app in a path other than the root, change the
-    href value below to reflect the base path you are serving from.
+	<head>
+		<title>SIH-TMSL</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="icon" href="./assets/css/images/Emerge colored.png">
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+		
+	</head>
+	<body class="is-preload">
+		<div id="wrapper">
+			<div id="bg"></div>
+			<div id="overlay"></div>
+			<div id="main">
 
-    The path provided below has to start and end with a slash "/" in order for
-    it to work correctly.
+				<!-- Header -->
+				<header id="header">
+					<img width="250px" src="./assets/css/images/sihlogo.jpeg" alt="Logo" style="border-radius: 500px;">
 
-    For more details:
-    * https://developer.mozilla.org/en-US/docs/Web/HTML/Element/base
+					<p style="color: black;"><strong>Techno Main Salt Lake</strong> &nbsp;&bull;&nbsp; <strong>Smart India Hackathon</strong></p>
 
-    This is a placeholder for base href that will be replaced by the value of
-    the `--base-href` argument provided to `flutter build`.
-  -->
-  <base href="/">
+					<nav>
+						<ul>
+							<li><a href="./Events.html" style="color: rgb(0, 0, 9); font-weight: bold; text-decoration: underline;">Arrangment</a></li>
+							<li><a href="./Gallery.html" style="color: rgb(0, 0, 9); font-weight: bold; text-decoration: underline;">Attendence</a></li>
+							<!-- <li><a href="https://github.com/Shinjan-saha/Emerge" style="color: rgb(0, 0, 9); font-weight: bold; text-decoration: underline;">Github</a></li> -->
+							<li><a href="./Contacts.html" style="color: rgb(0, 0, 9); font-weight: bold; text-decoration: underline;">Team</a></li>
+						</ul>
+					</nav>
+				</header>
 
-  <meta charset="UTF-8">
-  <meta content="IE=Edge" http-equiv="X-UA-Compatible">
-  <meta name="description" content="A new Flutter project.">
+				
 
-  <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="attend">
-  <link rel="apple-touch-icon" href="icons/techologo.png">
+				<!-- Footer -->
+				<footer id="footer">
+					<span class="copyright">&copy; Design & Built by:-Shinjan Saha.</span>
+				</footer>
 
-  <!-- Favicon -->
-  <link rel="icon" type="image/png" href="techologo.png"/>
-
-  <title>SIH-TMSL</title>
-  <link rel="manifest" href="manifest.json">
-
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    const serviceWorkerVersion = "767309532";
-  </script>
-  <!-- This script adds the flutter initialization JS code -->
-  <script src="flutter.js" defer></script>
-</head>
-<body>
-  <script>
-    window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        },
-        onEntrypointLoaded: function(engineInitializer) {
-          engineInitializer.initializeEngine().then(function(appRunner) {
-            appRunner.runApp();
-          });
-        }
-      });
-    });
-  </script>
-</body>
+			</div>
+		</div>
+		<script>
+			window.onload = function() { document.body.classList.remove('is-preload'); }
+			window.ontouchmove = function() { return false; }
+			window.onorientationchange = function() { document.body.scrollTop = 0; }
+		</script>
+	</body>
 </html>

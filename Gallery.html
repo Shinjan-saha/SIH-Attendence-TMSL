@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: url('./assets/css/images/newelec.jpg') center/cover no-repeat fixed;
+      margin: 0;
+      padding: 0;
+    }
+
+    h2 {
+      color: white;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 20px;
+      color: white;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #808080; /* Grey color */
+      color: white;
+    }
+
+    td {
+      background-color: #87CEEB; /* Sky blue color */
+    }
+
+    .checkbox-red {
+      width: 20px;
+      height: 20px;
+      background-color: red;
+      border: none;
+      cursor: pointer;
+    }
+
+    .checkbox-green {
+      background-color: green;
+    }
+
+    #searchBar {
+      margin-bottom: 20px;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+    }
+
+    
+  </style>
+</head>
+<body>
+
+  
+
+<h2>Attendance List</h2>
+
+<input type="text" id="searchBar" placeholder="Search by name..." oninput="searchAttendees()">
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Contact</th>
+      <th>Attendance</th>
+    </tr>
+  </thead>
+  <tbody id="attendanceTableBody">
+    <!-- Table rows will be added dynamically using JavaScript -->
+  </tbody>
+</table>
+
+<script>
+document.addEventListener('DOMContentLoaded', function () {
+  // Sample data (replace with your actual data)
+  const attendees = [
+    { name: 'Subhangi Roy', contact: '9830290435 ' },
+    { name: 'Anushka Chowdhury', contact: '6291517937' },
+    { name: 'Md Obaid ', contact: '8450067389' },
+    { name: 'Swapnil Kumar Chaudhuri ', contact: '7044903833' },
+    { name: 'Aditya Seth', contact: '9903342634' },
+    { name: 'Megha Mukherjee ', contact: '9674605535' },
+    { name: 'Mudita Bhowmick', contact: '7596837311' },
+    { name: 'Soumili Banerjee ', contact: '9934145450' },
+    { name: 'Ayan Kumar Pal ', contact: '8420019474' },
+    { name: 'Shamik Ghosh', contact: '8617269104' },
+    { name: 'Akshita Singh', contact: '9330625233' },
+    { name: 'Shantanu Saha', contact: '9073915549' },
+    { name: 'Subhadip Mondal', contact: '8617704773' },
+    { name: 'Sreejita Mukhopadhyay', contact: '7044894566' },
+    { name: 'Md Zaib Reyaz', contact: '9123396651' },
+    { name: 'Adarsh Agrahar', contact: '9693931272' },
+    { name: 'Suman Rakshit ', contact: '7098787053' },
+    { name: 'Subhangi Roy', contact: '9830290435' },
+    { name: 'Swapnil Kumar Chaudhuri ', contact: '7044903833' },
+    { name: 'Akshita Singh', contact: '9330625233' },
+    { name: 'AtyAnkush Das ', contact: '9051807262' },
+    { name: 'Shirsa Saha', contact: '9647528867' },
+    { name: 'Abhiraj Kolay ', contact: '8335959209' },
+    { name: 'Nabhoneel Singha', contact: '8617740315' },
+    { name: 'Rahul Deb ', contact: '8900471492' },
+    { name: 'Arka Rakshit', contact: '7718471103' },
+    { name: 'Rajdeep Saha ', contact: '9641735562' },
+    { name: 'Saikat Sankar Bagchi', contact: '8768335283' },
+    { name: 'Aviroop Chakraborty', contact: '9330285209' },
+    { name: 'Amrisha Saha', contact: '8900750888 ' },
+    { name: 'PRITHA CHAKRABORTY', contact: '9382902125' },
+    { name: 'Boitanik Kundu', contact: '7003412604' },
+    { name: 'Dipanjan Saha', contact: '9735243686' },
+    { name: 'Vishal Kumar Singh ', contact: '9674866286' },
+    { name: 'Souvik Maity', contact: '9883812698' },
+    { name: 'Debasmita Fouzdar', contact: '8902441616' },
+    { name: 'Shayan Sengupta', contact: '9330505741' },
+    { name: 'Mousam Dutta', contact: '9083725279' },
+    { name: 'Bhaskar Ghosh', contact: '7450044106' },
+    { name: 'Sonali Ghosh', contact: '6295787373' },
+    { name: 'Spandan Bandhu', contact: '8617471590' },
+    { name: 'Sunanda Mazumde', contact: '7364888733' },
+    { name: 'Tamojit Misra', contact: '9038581353' },
+    { name: 'Mudita Bhowmick', contact: '7596837311 ' },
+    { name: 'Aryak Bhattacharya', contact: '9830724110' },
+    { name: 'Deep Sekhar Aditya', contact: '9330195493 ' },
+    { name: 'Siddhartha Chakraborty', contact: '8337839853' },
+    { name: 'Indradeep Thakur ', contact: '9903399899' },
+    { name: 'SOUVIK MITRA', contact: '6290587463' },
+    { name: 'Samyak Das', contact: '7477731275' },
+    { name: 'Aparna Halder', contact: '6290345721' },
+    { name: 'Supriyo Ghosh', contact: '9674328685' },
+    { name: 'Anirban Roy', contact: '8420781551' },
+    { name: 'Parichay Biswas', contact: '9064309189' },
+    { name: 'Shubhradeep Malakar', contact: '9382031819' },
+    { name: 'Arindam Chatterjee', contact: '7718666009' },
+    { name: 'SAYAN SARKAR', contact: '7029319053' },
+    { name: 'OISHIK CHATTERJEE', contact: '87777467757' },
+    { name: 'Anindya Kanti Sen', contact: '8583090920' },
+    { name: 'Pushpam Baishnab', contact: '983181674' },
+    { name: 'Gaurav Sarkar', contact: '7001149460' },
+    { name: 'Ashutosh Mandal', contact: '9433621254' },
+    { name: 'Nishanta Kumar das', contact: '9006475674' },
+    { name: 'Anish Bhowmick', contact: '8583045918' },
+    
+
+
+    // Add more attendees as needed
+  ];
+
+  // Load attendance data from localStorage
+  const storedAttendance = JSON.parse(localStorage.getItem('attendance')) || {};
+
+  // Create table rows
+  const tableBody = document.getElementById('attendanceTableBody');
+  attendees.forEach((attendee, index) => {
+    const row = document.createElement('tr');
+    const nameCell = document.createElement('td');
+    const contactCell = document.createElement('td');
+    const checkboxCell = document.createElement('td');
+
+    nameCell.textContent = attendee.name;
+    contactCell.textContent = attendee.contact;
+
+    const checkbox = document.createElement('input');
+    checkbox.type = 'checkbox';
+    checkbox.className = 'checkbox-red';
+
+    // Update checkbox color based on stored state
+    if (storedAttendance[index]) {
+      checkbox.checked = true;
+      checkbox.classList.add('checkbox-green');
+    }
+
+    // Change checkbox color on click
+    checkbox.addEventListener('click', function () {
+      if (checkbox.checked) {
+        checkbox.classList.add('checkbox-green');
+      } else {
+        checkbox.classList.remove('checkbox-green');
+      }
+
+      // Save attendance state to localStorage
+      storedAttendance[index] = checkbox.checked;
+      localStorage.setItem('attendance', JSON.stringify(storedAttendance));
+    });
+
+    checkboxCell.appendChild(checkbox);
+
+    row.appendChild(nameCell);
+    row.appendChild(contactCell);
+    row.appendChild(checkboxCell);
+
+    tableBody.appendChild(row);
+  });
+});
+
+function searchAttendees() {
+  const input = document.getElementById('searchBar').value.toLowerCase();
+  const rows = document.getElementById('attendanceTableBody').getElementsByTagName('tr');
+
+  for (let i = 0; i < rows.length; i++) {
+    const name = rows[i].getElementsByTagName('td')[0].textContent.toLowerCase();
+    if (name.includes(input)) {
+      rows[i].style.display = '';
+    } else {
+      rows[i].style.display = 'none';
+    }
+  }
+}
+</script>
+
+</body>
+</html>
